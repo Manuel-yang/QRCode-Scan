@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Table :items="data"/>
+    <Table :items="data" @querySigData="querySigData"/>
       <b-button variant="success" @click="getData">TEST</b-button>
   </div>
 </template>
@@ -29,6 +29,11 @@ export default {
     async getData() {
       const req = await requester.get('/queryAllData');
       this.data = req.data;
+    },
+    async querySigData(item) {
+      const bridgeId = item.bridge_id.substr(1);
+      let url = `http://localhost:3000/querySigData/${bridgeId}`;
+      console.log(url);
     },
   },
 };
