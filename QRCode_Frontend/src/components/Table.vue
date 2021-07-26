@@ -10,7 +10,7 @@
     >
 
       <template #cell(actions)="row">
-        <b-button size="md" @click="$emit('querySigData', row.item)" class="m-2">
+        <b-button v-b-modal.modal-1 size="md" @click="$emit('querySigData', row.item)" class="m-2">
           Generate QRCode
         </b-button>
         <b-button size="md" @click="row.toggleDetails" class="ml-2">
@@ -66,7 +66,7 @@ export default {
     // this.infoModal.title = `Row index: ${index}`;
     // this.infoModal.content = JSON.stringify(item, null, 2);
     // this.infoModal.content = JSON.stringify(item);
-    // this.$root.$emit('bv::show::modal', this.infoModal.id, button);
+    //   this.$root.$emit('bv::show::modal', this.infoModal.id, button);
     // },
     resetInfoModal() {
       this.infoModal.title = '';

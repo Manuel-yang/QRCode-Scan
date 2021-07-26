@@ -2,12 +2,17 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <Table :items="data" @querySigData="querySigData"/>
-      <b-button variant="success" @click="getData">TEST</b-button>
+    <!-- <b-modal id="modal-1">
+      <p id="qrcode">test</p>
+    </b-modal> -->
+    <b-button variant="success" @click="getData">TEST</b-button>
+    <div class="m-5" id="qrcode"></div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import QRCode from 'qrcodejs2';
 import Table from './components/Table.vue';
 
 const requester = axios.create({ baseURL: 'http://localhost:3000' });
@@ -32,8 +37,19 @@ export default {
     },
     async querySigData(item) {
       const bridgeId = item.bridge_id.substr(1);
-      let url = `http://localhost:3000/querySigData/${bridgeId}`;
-      console.log(url);
+      const url = String(`http://localhost:3000/querySigData/${bridgeId}`);
+      document.getElementById('qrcode').innerHTML = '';
+      this.$nextTick(function () {
+        this.qrcode(url);
+      });
+    },
+    qrcode(url) {
+      const qrcode = new QRCode('qrcode', {
+        width: 124,
+        height: 124,
+        text: url,
+      });
+      return qrcode;
     },
   },
 };
