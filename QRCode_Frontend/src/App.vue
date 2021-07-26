@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     async getData() {
-      const req = await requester.get('/test');
+      const req = await requester.get('/queryAllData');
       this.data = req.data;
     },
   },

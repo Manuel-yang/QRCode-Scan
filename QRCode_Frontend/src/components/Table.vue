@@ -45,6 +45,7 @@ export default {
         { key: 'id', label: 'ID', sortDirection: 'desc' },
         { key: 'location', label: '所属地', class: 'text-center' },
         { key: 'maintain_time', label: '维修次数', sortDirection: 'desc' },
+        { key: 'bridge_id', label: '桥梁编号', sortDirection: 'desc' },
         { key: 'actions', label: 'Actions' },
       ],
       totalRows: 1,

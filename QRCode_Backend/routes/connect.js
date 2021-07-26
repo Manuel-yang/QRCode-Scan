@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
-let connect = require('../controllers/queryData')
+let connect = require('../controllers/queryAllData')
 
-router.get('/', connect.queryData);
+router.get('/', connect.queryAllData);
 
 module.exports = router;
