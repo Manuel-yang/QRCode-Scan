@@ -10,7 +10,10 @@
     >
 
       <template #cell(actions)="row">
-        <b-button v-b-modal.modal-1 size="md" @click="$emit('querySigData', row.item)" class="m-2">
+        <b-button
+          v-b-modal.modal-1 size="md"
+          @click="$emit('generateQRCode', row.item)"
+          class="m-2">
           Generate QRCode
         </b-button>
         <b-button size="md" @click="row.toggleDetails" class="ml-2">
