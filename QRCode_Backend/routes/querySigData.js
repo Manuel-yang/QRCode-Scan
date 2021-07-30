@@ -12,6 +12,7 @@ router.get('/:id', (req, res) => {
       console.log(err);
     }
     res.send(rows)
+    return rows;
   })
 });
 

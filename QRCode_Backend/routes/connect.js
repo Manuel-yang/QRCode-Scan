@@ -1,6 +1,6 @@
-let express = require('express');
-let router = express.Router();
-let connect = require('../controllers/queryAllData')
+const express = require('express');
+const router = express.Router();
+const connect = require('../controllers/queryAllData')
 
 router.get('/', connect.queryAllData);
 

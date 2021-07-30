@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AddRecord @add-record="addRecord"/>
     <b-table stacked :fields="fields" :items="items"></b-table>
     <b-alert variant="success" show class="m-3">检修记录</b-alert>
     <b-table striped hoevr :items="recoderList"></b-table>
@@ -7,10 +8,14 @@
 </template>
 <script>
 import axios from 'axios';
+import AddRecord from '../components/AddRecord.vue';
 
 const requester = axios.create({ baseURL: 'http://localhost:3000' });
 export default {
   name: 'showPage',
+  components: {
+    AddRecord,
+  },
   data() {
     return {
       id: this.$route.params.id,
@@ -28,8 +33,11 @@ export default {
     async query() {
       const req = await requester.get(`/querySigData/${this.$route.params.id}`);
       this.items = req.data;
-      this.recoderList = JSON.parse(req.data[0].RECODER);
-      console.log(req.data[0].RECODER);
+      this.recoderList = JSON.parse(req.data[0].RECORD);
+    },
+    async addRecord(newRecord) {
+      await requester.post(`/addRecord/${this.$route.params.id}`, { newRecord })
+        .then(this.query());
     },
   },
   mounted() {

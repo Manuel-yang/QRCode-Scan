@@ -4,7 +4,6 @@
     <b-modal id="modal-1">
       <div class="m-2" id="qrcode"></div>
     </b-modal>
-    <b-button variant="success" @click="getData">TEST</b-button>
   </div>
 </template>
 

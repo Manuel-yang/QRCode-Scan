@@ -19,7 +19,7 @@ exports.queryAllData = function (req, res) {
     for (let i = 0; i < rowCount; i++)
     {
       bridge_data = {
-        id: row[i].id,
+        id: row[i].ID,
         location: row[i].LOCATION,
         maintain_time: row[i].MAINTAIN_TIME,
         bridge_id: row[i].BRIDGE_ID,
