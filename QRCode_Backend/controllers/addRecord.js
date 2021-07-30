@@ -1,4 +1,3 @@
-const recordList = require('../routes/querySigData');
 const connection = require('../controllers/DBConnet');
 
 exports.addRecord = (req, res) => {
@@ -10,7 +9,9 @@ exports.addRecord = (req, res) => {
   const id = '\#'+params;
   
   if (name == '' || time == '' || date == '') {
-    res.state(200);
+    console.log('wrong');
+    res.status(406).send("wrong");
+    return;
   }
   const queryStr = 'SELECT * FROM bridge_data WHERE BRIDGE_ID = ?';
   const connect = connection.createConnection();
@@ -25,5 +26,6 @@ exports.addRecord = (req, res) => {
       Record = JSON.stringify(rawRecord);
       const updateStr = 'UPDATE bridge_data SET RECORD = ? WHERE BRIDGE_ID = ?';
       connect.query(updateStr,[`${Record}`,`${id}`]);
+      res.status(200).send('success');
   })
 }

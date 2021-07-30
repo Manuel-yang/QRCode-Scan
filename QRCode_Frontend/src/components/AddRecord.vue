@@ -6,6 +6,8 @@
       id="modal-prevent-closing"
       ref="modal"
       title="Submit A Record"
+      @show="reset"
+      @hidden="reset"
       @ok="handleOk"
     >
       <form ref="form" @submit.stop.prevent="handleSubmit">
@@ -60,30 +62,40 @@ export default {
       data: [],
     };
   },
+  props: {
+    valid: Boolean,
+  },
+  watch: {
+    valid(newValue) {
+      // console.log(newValue);
+      if (newValue === true) {
+        this.$bvModal.hide('modal-prevent-closing');
+      }
+    },
+  },
   methods: {
-    checkFormValidity() {
-      const valid = this.$refs.form.checkValidity();
-      this.nameState = valid;
-      return valid;
+    reset() {
+      this.nameState = '';
+      this.timeValue = '';
+      this.dateValue = '';
+      this.data = [];
     },
     handleOk(bvModalEvt) {
-      // Prevent modal from closing
       bvModalEvt.preventDefault();
-      // Trigger submit handler
       this.handleSubmit();
     },
+
     handleSubmit() {
-      // Exit when the form isn't valid
-      if (!this.checkFormValidity()) {
-        return;
-      }
       this.data.push(this.nameValue);
       this.data.push(this.timeValue);
       this.data.push(this.dateValue);
       this.$emit('add-record', this.data);
-      this.$nextTick(() => {
-        this.$bvModal.hide('modal-prevent-closing');
-      });
+      setTimeout(1000);
+      console.log(this.valid);
+      // if (this.valid === true) {
+      //   console('1');
+      //   this.$bvModal.hide('modal-prevent-closing');
+      // }
     },
   },
 };
