@@ -37,10 +37,10 @@
         <b-form-group
           label="Date"
           label-for="date-input"
-          invalid-feedback="Date is required"
+          invalid-feedback="您输入的数据有误，请重新输入"
+          :state="active"
         >
           <b-form-datepicker
-            id="example-datepicker"
             v-model="dateValue"
             class="mb-2"
           >
@@ -64,10 +64,10 @@ export default {
   },
   props: {
     valid: Boolean,
+    active: Boolean,
   },
   watch: {
     valid(newValue) {
-      // console.log(newValue);
       if (newValue === true) {
         this.$bvModal.hide('modal-prevent-closing');
       }
@@ -90,12 +90,7 @@ export default {
       this.data.push(this.timeValue);
       this.data.push(this.dateValue);
       this.$emit('add-record', this.data);
-      setTimeout(1000);
-      console.log(this.valid);
-      // if (this.valid === true) {
-      //   console('1');
-      //   this.$bvModal.hide('modal-prevent-closing');
-      // }
+      this.reset();
     },
   },
 };

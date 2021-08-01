@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AddRecord @add-record="addRecord" :valid="valid"/>
+    <AddRecord @add-record="addRecord" :valid="valid" :active="active"/>
     <b-table stacked :fields="fields" :items="items"></b-table>
     <b-alert variant="success" show class="m-3">检修记录</b-alert>
     <b-table striped hoevr :items="recoderList"></b-table>
@@ -20,6 +20,7 @@ export default {
     return {
       id: this.$route.params.id,
       valid: false,
+      active: true,
       items: [],
       recoderList: [],
       fields: [
@@ -46,7 +47,7 @@ export default {
         })
         .catch((error) => {
           if (error.response && error.response.status === 406) {
-            console.log('Wrong');
+            this.active = false;
           }
         });
     },
