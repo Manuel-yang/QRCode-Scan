@@ -26,7 +26,6 @@ export default {
       fields: [
         { key: 'ID', label: 'ID:', sortDirection: 'desc' },
         { key: 'LOCATION', label: '所属地:', class: 'text-center' },
-        { key: 'MAINTAIN_TIME', label: '维修次数:', sortDirection: 'desc' },
         { key: 'BRIDGE_ID', label: '桥梁编号:', sortDirection: 'desc' },
       ],
     };

@@ -37,7 +37,7 @@
         <b-form-group
           label="Date"
           label-for="date-input"
-          invalid-feedback="您输入的数据有误，请重新输入"
+          invalid-feedback="Ops! Something goes wrong! Please check the input"
           :state="active"
         >
           <b-form-datepicker
