@@ -27,6 +27,7 @@ export default {
         { key: 'ID', label: 'ID:', sortDirection: 'desc' },
         { key: 'LOCATION', label: '所属地:', class: 'text-center' },
         { key: 'BRIDGE_ID', label: '桥梁编号:', sortDirection: 'desc' },
+        { key: 'COUNT', label: '维修次数:', sortDirection: 'desc' },
       ],
     };
   },

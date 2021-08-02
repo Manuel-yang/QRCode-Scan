@@ -11,6 +11,9 @@ router.get('/:id', (req, res) => {
     if (err) {
       console.log(err);
     }
+    const count = JSON.parse(rows[0].RECORD).length;
+    rows[0]['COUNT']=count;
+    console.log(rows[0])
     res.send(rows)
     return rows;
   })
