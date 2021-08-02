@@ -58,5 +58,19 @@ exports.deleteRecord = (req, res) => {
     res.status(200).send('success');
     return;
   })
+}
 
+exports.addBridge = (req, res) => {
+  const location = req.body.data[0];
+  const bridge_id = req.body.data[1];
+  const initRecord = '[]';
+  if (location === '' || bridge_id === '') {
+    res.status(406).send('fail');
+    return;
+  }
+  const queryStr = 'INSERT INTO bridge_data(LOCATION, BRIDGE_ID, RECORD) VALUES(?, ?, ?)';
+  const connect = connection.createConnection();
+  connect.query(queryStr, [`${location}`,`${bridge_id}`,`${initRecord}`]);
+  res.status(200).send('success');
+  return;
 }

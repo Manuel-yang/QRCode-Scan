@@ -9,7 +9,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const connectRouter = require('./routes/connect');
 const querySigData = require('./routes/querySigData');
-const addRecord = require("./routes/DBOpt");
+const DBOpt = require("./routes/DBOpt");
 var app = express();
 
 // view engine setup
@@ -27,7 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/queryAllData', connectRouter);
 app.use('/querySigData', querySigData);
-app.use('/DBOpt', addRecord);
+app.use('/DBOpt', DBOpt);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

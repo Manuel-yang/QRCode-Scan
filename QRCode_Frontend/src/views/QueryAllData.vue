@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AddBridge @add-bridge="addBridge" :valid="valid" :active="active"/>
     <Table :items="data" @generateQRCode="generateQRCode"/>
     <b-modal id="modal-1">
       <div class="m-2" id="qrcode"></div>
@@ -11,6 +12,7 @@
 import axios from 'axios';
 import QRCode from 'qrcodejs2';
 import Table from '../components/Table.vue';
+import AddBridge from '../components/AddBridge.vue';
 
 const requester = axios.create({ baseURL: 'http://localhost:3000' });
 
@@ -19,10 +21,13 @@ export default {
   data() {
     return {
       data: [],
+      valid: false,
+      active: true,
     };
   },
   components: {
     Table,
+    AddBridge,
   },
   mounted() {
     this.getData();
@@ -50,6 +55,20 @@ export default {
         text: url,
       });
       return qrcode;
+    },
+    async addBridge(data) {
+      await requester.post('/DBOpt/addBridge', { data })
+        .then((res) => {
+          if (res.status === 200) {
+            this.valid = true;
+            this.getData();
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 406) {
+            this.active = false;
+          }
+        });
     },
   },
 };
