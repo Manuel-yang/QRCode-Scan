@@ -63,12 +63,6 @@ export default {
     this.totalRows = this.items.length;
   },
   methods: {
-    // info(item, index, button) {
-    // this.infoModal.title = `Row index: ${index}`;
-    // this.infoModal.content = JSON.stringify(item, null, 2);
-    // this.infoModal.content = JSON.stringify(item);
-    //   this.$root.$emit('bv::show::modal', this.infoModal.id, button);
-    // },
     resetInfoModal() {
       this.infoModal.title = '';
       this.infoModal.content = '';

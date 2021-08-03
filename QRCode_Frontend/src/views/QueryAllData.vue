@@ -22,6 +22,7 @@
 
     <b-modal id="modal-1">
       <div class="m-2" id="qrcode"></div>
+      <router-link :to="this.url">{{ this.url }}</router-link>
     </b-modal>
   </div>
 </template>
@@ -42,6 +43,7 @@ export default {
       valid: false,
       active: true,
       id: null,
+      url: null,
     };
   },
   components: {
@@ -59,9 +61,7 @@ export default {
     async generateQRCode(item) {
       const bridgeId = item.bridge_id.substr(1);
       const url = String(`http://localhost:8080/#/querySigData/${bridgeId}`);
-      // this.$nextTick(function () {
-      //   this.qrcode(url);
-      // });
+      this.url = String(`querySigData/${bridgeId}`);
       setTimeout(() => {
         document.getElementById('qrcode').innerHTML = '';
         this.qrcode(url);
