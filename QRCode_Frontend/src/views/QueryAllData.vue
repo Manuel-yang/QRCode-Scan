@@ -1,7 +1,25 @@
 <template>
   <div>
-    <AddBridge @add-bridge="addBridge" :valid="valid" :active="active"/>
-    <Table :items="data" @generateQRCode="generateQRCode"/>
+    <b-container>
+      <b-row>
+        <b-col>
+          <AddBridge
+            @add-bridge="addBridge"
+            :valid="valid"
+            :active="active"
+          />
+        </b-col>
+        <b-col>
+          <b-button @click="DeleteBridge">DELETE BRIDGE</b-button>
+        </b-col>
+      </b-row>
+    </b-container>
+    <Table
+      @delete-bridge="deleteBridge"
+      :items="data"
+      @generateQRCode="generateQRCode"
+    />
+
     <b-modal id="modal-1">
       <div class="m-2" id="qrcode"></div>
     </b-modal>
@@ -23,6 +41,7 @@ export default {
       data: [],
       valid: false,
       active: true,
+      id: null,
     };
   },
   components: {
@@ -67,6 +86,22 @@ export default {
         .catch((error) => {
           if (error.response && error.response.status === 406) {
             this.active = false;
+          }
+        });
+    },
+    async deleteBridge(id) {
+      this.id = id;
+    },
+    async DeleteBridge() {
+      await requester.post('/DBOpt/deleteBridge', [this.id])
+        .then((res) => {
+          if (res.status === 200) {
+            this.getData();
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 406) {
+            console.log(error);
           }
         });
     },

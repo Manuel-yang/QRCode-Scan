@@ -5,9 +5,9 @@
       :items="items"
       :fields="fields"
       stacked="md"
-      show-empty
-      hover
-      small
+      selectable
+      :select-mode="selectMode"
+      @row-clicked='onRowClicked'
     >
       <template #cell(actions)="row">
         <b-button
@@ -50,13 +50,12 @@ export default {
         { key: 'bridge_id', label: '桥梁编号', sortDirection: 'desc' },
         { key: 'actions', label: 'Actions' },
       ],
-      totalRows: 1,
-      currentPage: 1,
       infoModal: {
         id: 'info-modal',
         title: '',
         content: '',
       },
+      selectMode: 'single',
     };
   },
   mounted() {
@@ -73,6 +72,9 @@ export default {
     resetInfoModal() {
       this.infoModal.title = '';
       this.infoModal.content = '';
+    },
+    onRowClicked(item) {
+      this.$emit('delete-bridge', item.id);
     },
   },
 };

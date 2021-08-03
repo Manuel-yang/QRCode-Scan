@@ -74,3 +74,20 @@ exports.addBridge = (req, res) => {
   res.status(200).send('success');
   return;
 }
+
+exports.deleteBridge = (req, res) => {
+  const id = req.body[0]
+  if (id === null || id === '') {
+    res.status(406);
+    return;
+  }
+  const queryStr = 'DELETE FROM bridge_data WHERE id = ?'
+  const connect = connection.createConnection();
+  connect.query(queryStr, [`${id}`], (error) => {
+    if (error) {
+      console.log(error);
+    }
+  });
+  res.status(200).send();
+  return;
+}

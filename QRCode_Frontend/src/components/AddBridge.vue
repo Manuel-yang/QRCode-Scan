@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-prevent-closing>ADD Bridge</b-button>
+    <b-button v-b-modal.modal-prevent-closing>ADD BRIDGE</b-button>
 
     <b-modal
       id="modal-prevent-closing"
