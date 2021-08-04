@@ -8,10 +8,10 @@
         </a>
         <ul class="nav navbar-nav flex-row float-right">
           <li class="nav-item">
-            <router-link class="nav-link p-2" to="/adminLogin">Sign in</router-link>
+            <router-link class="nav-link p-2" to="/login">Sign in</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="btn btn-outline-primary " to="/">Sign up</router-link>
+            <router-link class="btn btn-outline-primary" to="/">Sign up</router-link>
           </li>
         </ul>
       </div>
@@ -21,11 +21,11 @@
       <div class="inner-block">
         <div class="vue-tempalte">
           <form>
-            <h3>Sign In</h3>
+            <h3>Login In</h3>
 
             <div class="form-group">
-              <label for="e-mail">Email address</label>
-              <input type="email" class="form-control form-control-lg">
+              <label for="Username">User name</label>
+              <input type="name" class="form-control form-control-lg">
             </div>
 
             <div class="form-group">
@@ -47,16 +47,11 @@
 
 <script>
 export default {
-  name: 'admin',
+  name: 'adminLogin',
 };
 </script>
 
 <style scoped>
-
-.navbar-light {
-  background-color: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-}
 
 .vertical-center {
   display: flex;
